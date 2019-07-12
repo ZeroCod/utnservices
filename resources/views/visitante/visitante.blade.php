@@ -22,16 +22,16 @@
                                 <div class="details">
                                     <div class="title d-flex flex-row justify-content-between">
                                         <div class="titles">
-                                            <a href="single.html"><h4>{{ ucfirst(trans($pub->titulo)) }}</h4></a>
+                                            <a href="{{ route('detalle-servicio', ['postID' => $pub->postID, 'titulo' => $pub->titulo]) }}"><h4>{{ ucfirst(trans($pub->titulo)) }}</h4></a>
                                             <h6>{{ $categorias->where('categoriaID', $pub->categoriaServ)->pluck('descripcion')->first() }} </h6>                 
                                         </div>
                                         <ul class="btns">
                                             <li><a href="#"><span class="lnr lnr-heart"></span></a></li>
-                                            <li><a href="#">Ver publicación</a></li>
+                                            <li><a href="{{ route('detalle-servicio', ['postID' => $pub->postID, 'titulo' => $pub->titulo]) }}">Ver publicación</a></li>
                                         </ul>
                                     </div>
                                     <p>
-                                        {!!nl2br(str_limit(str_replace(" ", " &nbsp;", $pub->descripcion), 250))!!}<a href="" class="text-primary"><em> Leer post completo</em></a>
+                                        {!!nl2br(str_limit(str_replace(" ", " &nbsp;", $pub->descripcion), 250))!!}<a href="{{ route('detalle-servicio', ['postID' => $pub->postID, 'titulo' => $pub->titulo]) }}" class="text-primary"><em> Leer post completo</em></a>
                                     </p>
                                     <p class="address"><span class="lnr lnr-map"></span> <strong>Publicado por: </strong>{{$users->where('id', $pub->usuario)->pluck('usuario')->first()}}</p>
                                     <p class="address"><span class="lnr lnr-database"></span><strong>Creado el: </strong>{{$pub->created_at}}</p>

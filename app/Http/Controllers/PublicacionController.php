@@ -54,6 +54,12 @@ class PublicacionController extends Controller
         
         return redirect('/home')->with('info', 'Post creado con éxito');
     }
+
+    public function show($postID, $titulo)
+    {
+        $publicacion = Publicacion::where('postID', $postID)->first();
+        return view('publicaciones.ver', compact('publicacion'));
+    }
     
     public function prueba(){
         $publicacion = DB::table('publicacion')->first();
@@ -62,6 +68,18 @@ class PublicacionController extends Controller
         
 //        $sql = "select * from publicacion, tagging_tagged where publicacion.postID = tagging_tagged.taggable_id and tagging_tagged.tag_name='Medicina'";
 //        return DB::select($sql,array(1,20));
+    }
+
+     ///Servicio web buscador a tiempo real  
+    public function busqueda(Request $request)
+    {    
+        ///
+        $input = $request->all();  
+        ///objeto publicacion sera igual a la  respuesta de cada ves que se digita       
+            $publicaciones = Publicacion::titulo(strval($request->busqueda))
+                ->get();        
+        //return response()->utf8_encode($publicaciones);
+        return response($publicaciones);        
     }
     
 }

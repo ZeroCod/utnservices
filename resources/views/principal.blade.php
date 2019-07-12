@@ -45,7 +45,7 @@
 				    
 				         
 				          <li><a href="/">Contacto</a></li>
-				          <li><a href="/">Buscar Servicios</a></li>
+				          <li><a href="{{ route('inicio') }}">Buscar Servicios</a></li>
 				            
 				          </li>
                                           
@@ -84,8 +84,8 @@
 											<select>
 												<option value="">Seleccionar Estado</option>
 											  @foreach($sepomex as $sepo)
-                                                                                          <option value="{{ $sepo->idEstado }}">{{ $sepo->estado }}</option>
-                                                                                          @endforeach
+                                                  	<option value="{{ $sepo->idEstado }}">	{{ $sepo->estado }}</option>
+                                              @endforeach
 											</select>
 										</div>
 									</div>
@@ -94,8 +94,8 @@
 											<select>
 												<option value="1">Todas las categorías</option>
 												@foreach($categorias as $categoria)
-                                                                                                <option value="{{ $categoria->categoriaID }}">{{ $categoria->descripcion }}</option>
-                                                                                                @endforeach
+                                                    <option value="{{ $categoria->categoriaID }}">{{ $categoria->descripcion }}</option>
+                                                @endforeach
 											</select>
 										</div>										
 									</div>

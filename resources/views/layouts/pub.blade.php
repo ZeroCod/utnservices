@@ -38,7 +38,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-primary navbar-laravel">
             <div class="container  " id="navbarColor01">
                 
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="{{ url('/inicio') }}">
                     <img src="{{ asset('img/fav.svg') }}" alt="" width="46px" height="46px" title="" />ServicesUTN
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

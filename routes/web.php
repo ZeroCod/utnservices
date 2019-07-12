@@ -21,9 +21,9 @@ Route::get('/usuario/perfil', 'UserController@perfil')->name('perfil');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/inicio', 'HomeController@index')->name('inicio');
 
-Route::get('/inicio', 'VisitanteController@index')->name('inicio');
+
 
 //actualizar info basica
 Route::get('/usuario/actualizar', 'UserController@actualizarPerfil')->name('actualizarInformacion');
@@ -47,3 +47,14 @@ Route::post('/guardar-experiencia', 'AgregarExpController@guardar')->name('guard
 
 
 Route::get('/pruebas', 'PublicacionController@prueba');
+
+/*Genera el servicio web para poder consumir axaj @Roberto Boz*/
+Route::post('/publicaciones/busqueda/','PublicacionController@busqueda');
+
+//detalle servicio
+Route::get('servicio/{postID}/{titulo}', [
+	'as' => 'detalle-servicio',
+	'uses' => 'PublicacionController@show'
+
+]);
+
