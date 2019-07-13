@@ -30,15 +30,15 @@
         </div>
     </div>
 </div> -->
-
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
     
 <section class="post-area">
-                <div class="container">
+                <div class="container" >
 
                     <div class="row justify-content-center d-flex">
-                        <div class="col-lg-8 post-list">
+                        <div class="col-lg-8 post-list" id="postlist">
                             @foreach($publicacion as $pub)
-                            <div class="single-post d-flex flex-row" id="postlist">
+                            <div class="single-post d-flex flex-row" id="single-post">
                                 <div class="thumb">
                                     <img src="{{ asset('imagenes/publicaciones') }}/{{$img->where('publicacion_id', $pub->postID)->pluck('nombre')->first()}}" height="108" width="108">
                                     <ul class="tags">
@@ -67,7 +67,11 @@
                                     <p class="address"><span class="lnr lnr-database"></span><strong>Creado el: </strong>{{$pub->created_at}}</p>
                                 </div>
                             </div>
-                            @endforeach 
+                            @endforeach
+                            @if(count($publicacion) === 0)
+                            <div class="card text-white bg-danger mb-2" style="max-width: 40em;"><div class="card-header">Sin servicios!</div><div class="card-body"><h4 class="card-title">Lo sentimos!</h4><p class="card-text">No hay servicios que cumplan con su criterio de búsqueda</p></div></div>
+
+                            @endif 
                             {!! $publicacion->render() !!}
                         </div>
 

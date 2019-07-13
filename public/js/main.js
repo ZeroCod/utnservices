@@ -40,6 +40,8 @@ $(document).ready(function(){
         fixedContentPos: false
     });
 
+    
+
 
   // Initiate superfish on nav menu
   $('.nav-menu').superfish({

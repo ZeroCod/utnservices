@@ -17,6 +17,8 @@
   color: #fff;
 }
 
+
+
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: #777777;
@@ -48,6 +50,8 @@
   color: #777777;
   font-weight: 300;
 }
+
+
 
 body {
   color: #777777;

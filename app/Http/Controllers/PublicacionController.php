@@ -14,7 +14,7 @@ class PublicacionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['only' => ['crear', 'store']]);
     }
     
     public function crear(){
