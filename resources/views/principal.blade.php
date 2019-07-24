@@ -43,8 +43,7 @@
 				          <li class="menu-active"><a href="/">Inicio</a></li>
 				          <li><a href="/">Acerca de</a></li>
 				          <li><a href="/">Categorías</a></li>
-				    
-				         
+				          <li><a href="{{ route('noticias') }}">Noticias</a></li>
 				          <li><a href="/">Contacto</a></li>
 				          <li><a href="{{ route('inicio') }}">Buscar Servicios</a></li>
 				            
@@ -139,9 +138,9 @@
 					</div>
 				</div>	
 			</section>
-<!--			 End features Area 
+<!--			 End features Area -->
 			
-			 Start popular-post Area 
+			 <!--Start popular-post Area- 
 			<section class="popular-post-area pt-100">
 				<div class="container">
 					<div class="row align-items-center">
@@ -228,7 +227,7 @@
 					</div>
 				</div>	
 			</section>
-			 End popular-post Area -->
+			  End popular-post Area -->
 			
 			<!-- Start feature-cat Area -->
 			<section class="feature-cat-area pt-100" id="category">

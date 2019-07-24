@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" href="css/asd.css">
+<link rel="stylesheet" href="asset('css/asd.css') }}">
 @if (Session::has('message'))
                                 <div class="alert alert-dismissible alert-danger">
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>

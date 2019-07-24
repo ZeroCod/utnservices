@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sepomex;
+use App\Publicacion;
 use DB;
 use App\User;
 use Hash;
@@ -181,5 +182,13 @@ class UserController extends Controller
                 return redirect('/usuario/configuracion')->with('message', 'Las contraseñas no conciden');
             }
         }
+    }
+
+    public function misServicios(){
+
+        $publicaciones = Publicacion::where('usuario', Auth::user()->id)->get();
+
+        return view('usuario.mis-servicios')->with('publicaciones', $publicaciones);
+        
     }
 }

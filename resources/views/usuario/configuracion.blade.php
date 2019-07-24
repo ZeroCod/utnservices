@@ -9,6 +9,7 @@
                 <a href="{{ route('actualizarInformacion') }}" class="list-group-item list-group-item-action">Información básica</a>
                 <a href="{{ route('configuracion') }}" class="list-group-item list-group-item-action active">Configuración de cuenta</a>
                 <a href="{{ route('experiencia') }}" class="list-group-item list-group-item-action">Experiencia</a>
+                <a href="{{ route('mis-servicios') }}" class="list-group-item list-group-item-action">Mis servicios</a>
 
 
             </div> 

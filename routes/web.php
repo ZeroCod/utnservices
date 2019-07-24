@@ -23,12 +23,19 @@ Auth::routes();
 
 Route::get('/inicio', 'HomeController@index')->name('inicio');
 
+Route::get('/inicio/categoria={categoria}', 'HomeController@buscarCategoria')->name('buscar.categoria');
+
+Route::get('/inicio/tag={tag}', 'HomeController@buscarTag')->name('buscar.tag');
+
 
 
 //actualizar info basica
 Route::get('/usuario/actualizar', 'UserController@actualizarPerfil')->name('actualizarInformacion');
 Route::post('/usuario/actualizar/fetch', 'UserController@fetch')->name('actualizarInformacion.fetch');
 Route::put('/usuario/actualizar', 'UserController@actualizarInfoPersonal')->name('actualizarInfoPersonal');
+
+//servicios usuario
+Route::get('/usuario/mis-servicios', 'UserController@misServicios')->name('mis-servicios');
 
 
 //config cuenta
@@ -49,7 +56,11 @@ Route::post('/guardar-experiencia', 'AgregarExpController@guardar')->name('guard
 Route::get('/pruebas', 'PublicacionController@prueba');
 
 /*Genera el servicio web para poder consumir axaj @Roberto Boz*/
-Route::post('/publicaciones/busqueda','PublicacionController@busqueda');
+Route::post('/publicaciones/busqueda','PublicacionController@busqueda')->name('busqueda');
+
+Route::get('/autocompletar',array('as'=>'autocompletar','uses'=>'PublicacionController@autocompletar'));
+
+
 
 //detalle servicio
 Route::get('servicio/{postID}/{titulo}', [
@@ -57,4 +68,9 @@ Route::get('servicio/{postID}/{titulo}', [
 	'uses' => 'PublicacionController@show'
 
 ]);
+
+//noticias rss
+Route::get('/noticias', 'IndexController@noticia')->name('noticias');
+
+
 

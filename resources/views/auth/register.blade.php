@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+    <div class="row justify-content-center form-wrap">
+        <div class="col-md-8 form-cols">
+            <div class="card border-info">
+                <div class="card-header">{{ __('Registro') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -29,7 +29,7 @@
                             <label for="paterno" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Paterno') }}</label>
 
                             <div class="col-md-6">
-                                <input id="paterno" type="text" class="form-control{{ $errors->has('paterno') ? ' is-invalid' : '' }}" name="paterno" value="{{ old('paterno') }}" required autofocus>
+                                <input id="paterno" type="text" class="form-control  {{ $errors->has('paterno') ? ' is-invalid' : '' }}" name="paterno" value="{{ old('paterno') }}" required autofocus>
 
                                 @if ($errors->has('paterno'))
                                     <span class="invalid-feedback" role="alert">
@@ -56,22 +56,36 @@
                         <div class="form-group row">
                             <label for="sexo" class="col-md-4 col-form-label text-md-right">{{ __('Sexo') }}</label>
 
-                            <div class="col-md-6">
+                           <!-- <div class="col-md-6">
                                  <label class="radio-inline"><input type="radio" name="sexo" id="femenino" value="F" required>Femenino</label>
                                 <label class="radio-inline"><input type="radio" name="sexo" id="masculino" value="M">Masculino</label>
                             </div>
+                        </div> -->
+                        <div class="col-md-6">
+
+                        <div class="custom-control custom-radio ">
+                          <input type="radio" id="femenino" name="sexo" class="custom-control-input" value="F">
+                          <label class="custom-control-label" for="femenino">Femenino</label>
                         </div>
-                        
+                        <div class="custom-control custom-radio">
+                          <input type="radio" id="masculino" name="sexo" class="custom-control-input" value="M">
+                          <label class="custom-control-label" for="masculino">Masculino</label>
+                        </div>
+                        </div>
+                    </div>
                         
                         <div class="form-group row">
                             <label for="nacimiento" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Nacimiento') }}</label>
 
-                            <input type="date" class="form-control-sm" id="nacimiento" name="nacimiento" max="2001-01-01"
+                            <div class="col-md-6">
+
+                                <input type="date" class="form-control " id="nacimiento" name="nacimiento" max="2001-01-01"
                                    value="">
+                            </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electrónico') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
@@ -99,7 +113,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -113,7 +127,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar contraseña') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>

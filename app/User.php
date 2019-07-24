@@ -47,4 +47,20 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Publicacion');
     }
+
+    public function setNombreAttribute($value)
+    {
+        $this->attributes['nombre'] = ucwords($value);
+    }
+
+    public function setPaternoAttribute($value)
+    {
+        $this->attributes['paterno'] = ucwords($value);
+    }
+
+    public function setMaternoAttribute($value)
+    {
+        $this->attributes['materno'] = ucwords($value);
+    }
+
 }

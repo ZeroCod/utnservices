@@ -30,21 +30,19 @@
         </div>
     </div>
 </div> -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
-    
 <section class="post-area">
-                <div class="container" >
+                <div class="" >
 
                     <div class="row justify-content-center d-flex">
-                        <div class="col-lg-8 post-list" id="postlist">
+                        <div class="col-lg-7 post-list" id="postlist">
                             @foreach($publicacion as $pub)
                             <div class="single-post d-flex flex-row" id="single-post">
                                 <div class="thumb">
-                                    <img src="{{ asset('imagenes/publicaciones') }}/{{$img->where('publicacion_id', $pub->postID)->pluck('nombre')->first()}}" height="108" width="108">
+                                    <img class="img-responsive" src="{{ asset('imagenes/publicaciones') }}/{{$img->where('publicacion_id', $pub->postID)->pluck('nombre')->first()}}" width="200">
                                     <ul class="tags">
                                         @foreach($tags->where('taggable_id', $pub->postID) as $tag)
                                         <li>
-                                            <a href="#">{{$tag->tag_name }}</a>
+                                            <a href="{{ route('buscar.tag', $tag->tag_name) }}">{{$tag->tag_name }}</a>
                                         </li>
                                         @endforeach
                                     </ul>
@@ -61,7 +59,7 @@
                                         </ul>
                                     </div>
                                     <p>
-                                        {!!nl2br(str_limit(str_replace(" ", " &nbsp;", $pub->descripcion), 250))!!}<a href="{{ route('detalle-servicio', ['postID' => $pub->postID, 'titulo' => $pub->titulo]) }}" class="text-primary"><em> Leer post completo</em></a>
+                                        {!! nl2br(str_limit(str_replace(" ", " &nbsp;", $pub->descripcion), 50)) !!}<a href="{{ route('detalle-servicio', ['postID' => $pub->postID, 'titulo' => $pub->titulo]) }}" class="text-primary"><em> Leer post completo</em></a>
                                     </p>
                                     <p class="address"><span class="lnr lnr-map"></span> <strong>Publicado por: </strong>{{$users->where('id', $pub->usuario)->pluck('usuario')->first()}}</p>
                                     <p class="address"><span class="lnr lnr-database"></span><strong>Creado el: </strong>{{$pub->created_at}}</p>
@@ -91,7 +89,7 @@
                                 <h4>Servicios por Categoria</h4>
                                 <ul class="cat-list">
                                     @foreach($categorias as $categoria)
-                                    <li><a class="justify-content-between d-flex" href="category.html"><p>{{    $categoria->descripcion    }}</p><span></span></a></li>
+                                    <li><a class="justify-content-between d-flex" href="{{ route('buscar.categoria', $categoria->descripcion) }}"><p>{{    $categoria->descripcion    }}</p><span></span></a></li>
                                     @endforeach
                                 </ul>
                             </div>                       

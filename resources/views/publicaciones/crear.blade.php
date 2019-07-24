@@ -6,6 +6,7 @@
     <div class="row">
         <div class="col-sm-8 offset-md-2">
             <h1 class="page-header">Crear publicacion</h1>
+
            
             <br>
             <form action="{{ route('guardar-servicio') }}" method="POST" enctype="multipart/form-data">
@@ -67,3 +68,4 @@
 
 
 @endsection
+   

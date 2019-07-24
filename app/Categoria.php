@@ -12,4 +12,11 @@ class Categoria extends Model
     {
         return $this->hasMany('App\Publicacion');
     }
+
+    public function scopeCategoria($query, $categoria)
+    {
+        $query->select('categoriaID')->where('descripcion', "LIKE",  "%$categoria%");
+    }
+
+
 }

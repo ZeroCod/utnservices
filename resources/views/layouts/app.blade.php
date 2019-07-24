@@ -11,12 +11,41 @@
 
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery3.3.1.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-tagsinput.min.js') }}"></script>
-    <!-- Generamos el script para poder obtener cada digitacion-->
-   <script>  
-        // A $( document ).ready() block.
+    <script src="{{ asset('js/bootstrap3-typeahead.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>    
+  
+    <script src="{{ asset('js/easing.min.js') }}"></script>            
+    <script src="{{ asset('js/hoverIntent.js') }}"></script>
+    <script src="{{ asset('js/superfish.min.js') }}"></script> 
+    <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script> 
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>          
+    <script src="{{ asset('js/jquery.sticky.js') }}"></script>
+    <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>            
+    <script src="{{ asset('js/parallax.min.js') }}"></script>      
+    <script src="{{ asset('js/mail-script.js') }}"></script>   
+    <script src="{{ asset('js/main.js') }}"></script>  
+
+
+    <script >
+
+        $(window).on('load', function () {
+            setTimeout(function () {
+            $(".loader-page").css({visibility:"hidden",opacity:"0"})
+          }, 100);
+
+        var url = "{{ route('autocompletar') }}";
+        $('#buscador').typeahead({
+            source:  function (query, process) {
+            return $.get(url, { query: query }, function (data) {
+                    return process(data);
+                });
+            }
+        });
+
+             // A $( document ).ready() block.
         /*Creamos la funcion para obtener la digitacion
           @Roberto Boz*/
         $( document ).ready(function() {
@@ -33,13 +62,13 @@
                     url:'/publicaciones/busqueda',
                     data:{'busqueda':search, _token : token },            
                     success: function(res){                         
-                       console.log(res); 
+                       //console.log(res); 
                        /*Inicialiso mi variable que contiene las div @Roberto Boz */
                         var newhtml = '';  
                         /*Un for que recorra la variable res para postear los resultados @Roberto Boz*/                              
                         for(var i in res) {
-                            console.log(i, res[i]);
-                            newhtml +='<div class="single-post d-flex flex-row"><div class="thumb"><img src="imagenes/publicaciones/servicesutn_1560753970.jpeg" height="108" width="108"><ul class="tags"><li><a href="#">'+res[i].titulo+'</a></li></ul></div><div class="details"><div class="title d-flex flex-row justify-content-between"><div class="titles"><a href="single.html"><h4>'+res[i].titulo+'</h4></a><h6>'+res[i].categoriaServ+'</h6></div><ul class="btns"><li><a href="#"><span class="lnr lnr-heart"></span></a></li> <li><a href="#">Ver publicación</a></li></ul></div><p>'+res[i].descripcion+'<a href="" class="text-primary"><em> Leer post completo</em></a></p><p class="address"><span class="lnr lnr-map"></span> <strong>Publicado por: </strong>Roberto Boz</p><p class="address"><span class="lnr lnr-database"></span><strong>Creado el: </strong>'+res[i].created_at+'</p></div></div></div>';
+                            //console.log(i, res[i]);
+                            newhtml +='<div class="single-post d-flex flex-row"><div class="thumb"><img src="imagenes/publicaciones/servicesutn_1554082634.jpg" height="108" width="108"><ul class="tags"><li><a href="#">'+res[i].titulo+'</a></li></ul></div><div class="details"><div class="title d-flex flex-row justify-content-between"><div class="titles"><a href="single.html"><h4>'+res[i].titulo+'</h4></a><h6>'+res[i].categoriaServ+'</h6></div><ul class="btns"><li><a href="#"><span class="lnr lnr-heart"></span></a></li> <li><a href="#">Ver publicación</a></li></ul></div><p>'+res[i].descripcion+'<a href="" class="text-primary"><em> Leer post completo</em></a></p><p class="address"><span class="lnr lnr-map"></span> <strong>Publicado por: </strong>Roberto Boz</p><p class="address"><span class="lnr lnr-database"></span><strong>Creado el: </strong>'+res[i].created_at+'</p></div></div></div>';
                            
                         }
                         if(newhtml===''){
@@ -54,15 +83,12 @@
             });
         });
 
-                $(window).on('load', function () {
-              setTimeout(function () {
-            $(".loader-page").css({visibility:"hidden",opacity:"0"})
-          }, 100);
              
-        });
+        });</script>
 
-   </script>
-   <style type="text/css">  .loader-page {
+   <style type="text/css">  
+
+    .loader-page {
     position: fixed;
     z-index: 25000;
     background: rgb(255, 255, 255);
@@ -109,8 +135,8 @@
    
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -118,14 +144,13 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}">					
+    <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}"> 				
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    
     <link rel="stylesheet" href="{{ asset('css/bs.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
-    
-    
     
 </head>
 
@@ -136,7 +161,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-light navbar-laravel">
             <div class="container" id="navbarColor02">
                 
-                <a class="navbar-brand" href="{{ url('/inicio') }}">
+                <a class="navbar-brand" href="{{ route('index') }}">
                     <img src="{{ asset('img/SF_Inicio.png') }}" alt="" height="45px" title="" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -152,9 +177,9 @@
                     <form class="form-inline my-2 my-lg-0 col-md-5 col-md-offset-4" method="GET" action="{{ route('inicio') }}">
 
                         <div class="input-group mb-1 ">
-                          <input type="search" class="form-control" placeholder="Buscar servicios" aria-label="Buscar servicios" aria-describedby="basic-addon2" id="buscador" name="titulo">
+                          <input autocomplete="off" type="text" class="typeahead-2 form-control" data-provide="typeahead" placeholder="Buscar servicios" aria-label="Buscar servicios" aria-describedby="basic-addon2" id="buscador" name="titulo">
                           <div class="input-group-append">
-                            <button class="genric-btn success medium btn-outline-secondary" type="submit">Buscar</button>
+                            <button class="genric-btn success medium btn-outline-secondary" type="submit"><span class="lnr lnr-magnifier"></span></button>
                           </div>
                         </div>
                     </form>
@@ -164,7 +189,7 @@
                         <div class="input-group mb-1 ">
                           <input type="search" class="form-control" placeholder="Buscar servicios" aria-label="Buscar servicios" aria-describedby="basic-addon2" id="buscador" name="titulo">
                           <div class="input-group-append">
-                            <button class="genric-btn success medium btn-outline-secondary" type="submit">Buscar</button>
+                            <button class="genric-btn success medium btn-outline-secondary" type="submit"><span class="lnr lnr-magnifier"></span></button>
                           </div>
                         </div>
                     </form>
@@ -182,21 +207,31 @@
                                 </li>
                             @endif
                         @else
-                        
-                        <input type="button" class="btn btn-success active" value="Nuevo servicio" onclick="window.location='{{ route("nuevo-servicio") }}'">
+                            <li class="nav-item">
+                            <input type="button" class="btn btn-success" value="Nuevo servicio" onclick="window.location='{{ route("nuevo-servicio") }}'">
+                            </li>
+
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle nav-menu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle nav-menu align-text-m" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-pre>
                                     {{ 'Bienvenid@' . ' ' . Auth::user()->nombre }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('perfil') }}">
-                                        {{ __('Perfil') }}
+                                        {{ __('Mi perfil') }}
                                     </a>
                                     
                                     <a class="dropdown-item" href="{{ route('actualizarInformacion') }}">
                                         {{ __('Actualizar información') }}
                                     </a>
-                                    
+                                    <div class="dropdown-divider"></div>
+
+                                    <a class="dropdown-item" href="{{ route('mis-servicios') }}">
+                                        {{ __('Mis servicios') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('inicio') }}">
+                                        {{ __('Buscar Servicios') }}
+                                    </a>
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

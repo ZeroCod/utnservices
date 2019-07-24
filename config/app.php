@@ -176,6 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         
         Conner\Tagging\Providers\TaggingServiceProvider::class,
+        Unisharp\Ckeditor\ServiceProvider::class,
+
 
     ],
 

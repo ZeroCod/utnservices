@@ -1,7 +1,7 @@
 @extends('layouts.app')
 <link rel="stylesheet" href="{{ asset('css/verservicio.css') }}">
 @section('content')
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
 <div class="col-sm-12 col-md-12 col-lg-12">
             <!-- product -->
             <div class="product-content product-wrap clearfix product-deatil">
@@ -10,21 +10,28 @@
                             <div class="product-image"> 
                             <div id="myCarousel-2" class="carousel slide" data-ride="carousel">
                               <ol class="carousel-indicators">
+                                @if (count($imagen) === 1)
+                                <li data-target="#myCarousel-2" data-slide-to="0" class="active"></li>
+                                @elseif (count($imagen) === 2)
+                                <li data-target="#myCarousel-2" data-slide-to="0" class="active"></li>
+                                <li data-target="#myCarousel-2" data-slide-to="1"></li>
+                                @elseif (count($imagen) === 3)
                                 <li data-target="#myCarousel-2" data-slide-to="0" class="active"></li>
                                 <li data-target="#myCarousel-2" data-slide-to="1"></li>
                                 <li data-target="#myCarousel-2" data-slide-to="2"></li>
+                                @endif
                               </ol>
                               <div class="carousel-inner">
+                                @foreach($imagen as $img)
                                 <div class="carousel-item active">
-                                  <img src="http://meu-granada.org.es/wp-content/uploads/2017/07/atencioncliente2.png" height="350" alt="First slide" align="center">
+                                  <img src="{{ asset('imagenes/publicaciones') }}/{{$img->nombre}}" width="400" alt="First slide" align="center">
                                 </div>
-                                <div class="carousel-item">
-                                  <img  src="http://meu-granada.org.es/wp-content/uploads/2017/07/atencioncliente2.png" height="350" alt="Second slide">
-                                </div>
-                                <div class="carousel-item">
-                                  <img  src="http://meu-granada.org.es/wp-content/uploads/2017/07/atencioncliente2.png" height="350" alt="Third slide">
-                                </div>
+
+                                @endforeach
+                    
                               </div>
+                              @if (count($imagen) === 1)
+                              @elseif (count($imagen) > 1)
                               <a class="carousel-control-prev" href="#myCarousel-2" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Anterior</span>
@@ -33,6 +40,7 @@
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Siguiente</span>
                               </a>
+                              @endif
                               </div>
                             </div>
                             
@@ -42,7 +50,9 @@
                     
                         <h2 class="name">
                             {{ $publicacion->titulo }}
-                            <small>Posteado por: <a href="javascript:void(0);">h</a></small>
+                            
+                            <small>Posteado por: <a href="javascript:void(0);">{{ $user->usuario }}</a></small>
+                            
                             <i class="fa fa-star fa-2x text-primary"></i>
                             <i class="fa fa-star fa-2x text-primary"></i>
                             <i class="fa fa-star fa-2x text-primary"></i>
@@ -58,8 +68,7 @@
                         </h3>-->
                         <div class="certified">
                             <ul>
-                                <li><a href="javascript:void(0);">Delivery time<span>7 Working Days</span></a></li>
-                                <li><a href="javascript:void(0);">Categoría <span></span></a></li>
+                                <li><a href="javascript:void(0);">Categoría <span>{{ $categorias->descripcion }}</span></a></li>
                             </ul>
                         </div>
                         <hr>
@@ -73,7 +82,7 @@
                                 <div class="tab-pane fade active in" id="more-information">
                                     <br>
                                     <strong>{{ $publicacion->titulo }}</strong>
-                                    <p>{{ $publicacion->descripcion }} </p>
+                                    <p>{!! $publicacion->descripcion !!} </p>
                                 </div>
                                 <div class="tab-pane fade" id="specifications">
                                     <br>

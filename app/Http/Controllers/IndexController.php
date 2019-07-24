@@ -18,4 +18,14 @@ class IndexController extends Controller
                                 ->with('sepomex', $sepomex)
                                 ->with('categorias', $categorias);
     }
+
+    public function noticia()
+    {
+        $url = "https://www.reforma.com/rss/nacional.xml";
+        $xml = simplexml_load_file($url);
+
+        /* Aquí lo mejor es manipular la información de tu XML de acuerdo a lo que se mostrará en la vista */
+
+        return view('index.noticias', ['xmlContent' => $xml]);
+    }
 }

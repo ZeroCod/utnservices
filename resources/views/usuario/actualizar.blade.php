@@ -16,6 +16,7 @@ input:valid {
                 <a href="{{ route('actualizarInformacion') }}" class="list-group-item list-group-item-action active">Información básica</a>
                 <a href="{{ route('configuracion') }}" class="list-group-item list-group-item-action">Configuración de cuenta</a>
                 <a href="{{ route('experiencia') }}" class="list-group-item list-group-item-action">Experiencia</a>
+                <a href="{{ route('mis-servicios') }}" class="list-group-item list-group-item-action">Mis servicios</a>
 
 
             </div> 
@@ -33,11 +34,11 @@ input:valid {
                                 {{Session::get('message')}}
                                 </div>
                             @endif
-                            @if (Session::has('info'))
+                            @if (Session::has('status'))
                             
                             <div class='alert  alert-dismissible alert-primary'>
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                {{Session::get('info')}}
+                                {{Session::get('status')}}
                             </div>
                            
                             @endif
@@ -97,8 +98,8 @@ input:valid {
                                             
                                             
                                             @endif
-                                            @foreach ($estados as $estado)
                                             <option value="">Seleccione estado</option>
+                                            @foreach ($estados as $estado)
                                             <option value="{{ $estado->estado }}">{{ $estado->estado }}</option>
                                             @endforeach
 

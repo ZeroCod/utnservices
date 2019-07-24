@@ -7,6 +7,8 @@ use Conner\Tagging\Taggable;
 class Publicacion extends Model
 {
     protected $table = 'publicacion';
+
+
     
     use Taggable;
     
@@ -31,8 +33,15 @@ class Publicacion extends Model
     
     public function scopeTitulo($query, $titulo)
     {
-        if($titulo != ""){
+        if(trim($titulo) != ""){
         $query->where('titulo', "LIKE",  "%$titulo%");
+        }
+    }
+
+    public function scopeCategoria($query, $categoria)
+    {
+        if($categoria != ""){
+        $query->select('categoriaID')->where('descripcion', "LIKE",  "%$categoria%");
         }
     }
     

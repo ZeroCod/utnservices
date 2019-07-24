@@ -52,13 +52,19 @@ class PublicacionController extends Controller
         
 //        Flash::sucess('Se ha creado la publicación' . $publicacion->titulo . ' de forma satisfactoria');
         
-        return redirect('/home')->with('info', 'Post creado con éxito');
+        return redirect('/inicio')->with('info', 'Post creado con éxito');
     }
 
     public function show($postID, $titulo)
     {
+        $categoria = Publicacion::select('categoriaServ')->where('postID', $postID)->pluck('categoriaServ')->first();
+        $up = Publicacion::select('usuario')->where('postID', $postID)->pluck('usuario')->first();
         $publicacion = Publicacion::where('postID', $postID)->first();
-        return view('publicaciones.ver', compact('publicacion'));
+        $categorias = Categoria::where('categoriaID', $categoria)->first();
+        $user = User::where('id', $up)->first();
+        $imagen = Imagen::where('publicacion_id', $postID)->get();
+
+        return view('publicaciones.ver', compact(['publicacion', 'imagen', 'user', 'categorias']));
     }
     
     public function prueba(){
@@ -79,7 +85,17 @@ class PublicacionController extends Controller
             $publicaciones = Publicacion::titulo(strval($request->busqueda))
                 ->get();        
         //return response()->utf8_encode($publicaciones);
-        return response($publicaciones);        
+        return response()->json($publicaciones);        
+    }
+
+     public function autocompletar(Request $request){
+
+        $query = $request->get('titulo','');        
+
+        $posts = Publicacion::where('titulo','LIKE','%'.$query.'%')->get();     
+
+        return response()->json($posts);
+
     }
     
 }

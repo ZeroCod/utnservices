@@ -9,6 +9,7 @@
                 <a href="{{ route('actualizarInformacion') }}" class="list-group-item list-group-item-action">Información básica</a>
                 <a href="{{ route('configuracion') }}" class="list-group-item list-group-item-action">Configuración de cuenta</a>
                 <a href="{{ route('experiencia') }}" class="list-group-item list-group-item-action active">Experiencia</a>
+                <a href="{{ route('mis-servicios') }}" class="list-group-item list-group-item-action">Mis servicios</a>
 
 
             </div> 
@@ -65,7 +66,6 @@
                                     <label for="detalle" class="col-4 col-form-label">Descripcion</label>
                                     <div class="col-8">
                                      <textarea type="detalle" name="detalle" id="detalle" class="form-control" rows="3" required></textarea>
-                                
                                     </div>
                                 </div>
                                 {{ csrf_field() }}
