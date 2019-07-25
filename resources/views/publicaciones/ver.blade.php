@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="col-sm-12 col-md-12 col-lg-12">
+    
             <!-- product -->
             <div class="product-content product-wrap clearfix product-deatil">
                 <div class="row">
@@ -51,7 +52,7 @@
                         <h2 class="name">
                             {{ $publicacion->titulo }}
                             
-                            <small>Posteado por: <a href="javascript:void(0);">{{ $user->usuario }}</a></small>
+                            <h5>Posteado por: <a href="javascript:void(0);">{{ $user->usuario }}</a></h5>
                             
                             <i class="fa fa-star fa-2x text-primary"></i>
                             <i class="fa fa-star fa-2x text-primary"></i>
@@ -79,7 +80,7 @@
                                 <li class="nav-item"><a class="nav-link" href="#reviews" data-toggle="tab">Opiniones</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content">
-                                <div class="tab-pane fade active in" id="more-information">
+                                <div class="tab-pane fade show active in" id="more-information">
                                     <br>
                                     <strong>{{ $publicacion->titulo }}</strong>
                                     <p>{!! $publicacion->descripcion !!} </p>
@@ -93,7 +94,23 @@
 
                                             <dt>No incluye</dt>
                                             <dd>{{ $publicacion->no_incluye }}</dd>
-                                            <br>    
+                                            <br>
+
+                                            <table class="table table-hover">
+                                            <tr class="table-success">
+                                              <td>Precio</td>
+                                              <td>Descripción</td>
+                                            </tr>
+
+                                            @foreach($detalle as $dtl)
+                                            <tr>
+                                                
+                                              <td>${{ $dtl->precio }}</td>
+                                              <td>{{ $dtl->descripcion }}</td>
+                                              
+                                            </tr>
+                                            @endforeach
+                                            </table>     
 
                                         </dl>
                                 </div>
@@ -147,7 +164,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <a href="javascript:void(0);" class="btn btn-success btn-lg">Contratar servicio</a>
+                                    <a href="{{ route('contacto-servicio', ['postID' => $publicacion->postID, 'titulo' => $publicacion->titulo]) }}" class="btn btn-info btn-lg">Me interesa</a>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="btn-group pull-right">

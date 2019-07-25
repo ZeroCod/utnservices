@@ -69,6 +69,13 @@ Route::get('servicio/{postID}/{titulo}', [
 
 ]);
 
+//Contacto
+Route::get('servicio/{postID}/{titulo}/contacto', [
+	'as' => 'contacto-servicio',
+	'uses' => 'PublicacionController@showContact'
+
+]);
+
 //noticias rss
 Route::get('/noticias', 'IndexController@noticia')->name('noticias');
 

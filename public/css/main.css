@@ -54,7 +54,7 @@
 
 
 body {
-  color: #777777;
+  color: #3c3939;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 300;
@@ -785,9 +785,14 @@ td, th {
   font-size: 24px;
 }
 
-b, sup, sub, u, del {
+sup, sub, u, del {
   color: #49e4fa;
 }
+
+b{
+  font-weight: bold;
+}
+
 
 h1 {
   font-size: 36px;

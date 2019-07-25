@@ -29,7 +29,7 @@
                             <label for="paterno" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Paterno') }}</label>
 
                             <div class="col-md-6">
-                                <input id="paterno" type="text" class="form-control  {{ $errors->has('paterno') ? ' is-invalid' : '' }}" name="paterno" value="{{ old('paterno') }}" required autofocus>
+                                <input id="paterno" type="text" class="form-control  {{ $errors->has('paterno') ? ' is-invalid' : '' }}" name="paterno" value="{{ old('paterno') }}" required>
 
                                 @if ($errors->has('paterno'))
                                     <span class="invalid-feedback" role="alert">
@@ -80,7 +80,7 @@
                             <div class="col-md-6">
 
                                 <input type="date" class="form-control " id="nacimiento" name="nacimiento" max="2001-01-01"
-                                   value="">
+                                   value="" required>
                             </div>
                         </div>
 
@@ -135,7 +135,10 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-6 offset-md-6">
+                                <a class="btn btn-danger" href="/">
+                                    {{ __('Cancelar') }}
+                                </a>
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Registrarse') }}
                                 </button>

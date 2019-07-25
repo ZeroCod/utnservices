@@ -8,11 +8,26 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Publicar servicio</title>
-    <link rel="shortcut icon" href="{{ asset('img/fav.svg') }}">
+    <link rel="shortcut icon" href="{{ asset('img/fav.png') }}">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" ></script>
     <script src="{{ asset('js/jquery3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap3-typeahead.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>    
+  
+    <script src="{{ asset('js/easing.min.js') }}"></script>            
+    <script src="{{ asset('js/hoverIntent.js') }}"></script>
+    <script src="{{ asset('js/superfish.min.js') }}"></script> 
+    <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script> 
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>          
+    <script src="{{ asset('js/jquery.sticky.js') }}"></script>
+    <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>            
+    <script src="{{ asset('js/parallax.min.js') }}"></script>      
+    <script src="{{ asset('js/mail-script.js') }}"></script>   
+    <script src="{{ asset('js/main.js') }}"></script>  
+
     <script >$(window).on('load', function () {
             setTimeout(function () {
             $(".loader-page").css({visibility:"hidden",opacity:"0"})
@@ -22,8 +37,8 @@
  
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
 
     <!-- Styles -->
     <style type="text/css">  .loader-page {
@@ -74,11 +89,11 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}">                   
+    <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}">               
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bs.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     
 </head>
 <body>
@@ -88,7 +103,7 @@
             <div class="container  " id="navbarColor02">
                 
                 <a class="navbar-brand" href="{{ url('/inicio') }}">
-                    <img src="{{ asset('img/fav.svg') }}" alt="" width="46px" height="46px" title="" />ServicesUTN
+                    <img src="{{ asset('img/SF_Inicio.png') }}" alt="" height="45px" title="" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -114,7 +129,7 @@
                             @endif
                         @else
                         
-                        <input type="button" class="btn btn-primary active" value="Nuevo servicio" onClick=" window.location.href='/usuario/perfil' ">
+                    
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-pre>
                                     {{ 'Bienvenid@' . ' ' . Auth::user()->nombre }} <span class="caret"></span>
@@ -153,9 +168,10 @@
 
         </main>
     </div>
-        <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+        <script src="{{ asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js') }}" charset = "utf-8"></script>
     <script>
         CKEDITOR.replace( 'descripcion' );
+
     </script>
 </body>
 </html>

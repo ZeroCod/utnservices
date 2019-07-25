@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Categoria;
 use App\Publicacion;
 use App\User;
+use App\DetallePublicacion;
 use DB;
 use App\Imagen;
 use Symfony\Component\HttpFoundation\Session\Flash;
@@ -25,6 +26,7 @@ class PublicacionController extends Controller
     
     public function store(Request $request){
         $tags = explode(',', $request->tags);
+
         if($request->file('image')){
         $file = $request->image;
         $name = 'servicesutn_' .time() . '.' . $file->getClientOriginalExtension();
@@ -41,9 +43,24 @@ class PublicacionController extends Controller
         $publicacion->incluye = $request->incluye;
         $publicacion->no_incluye = $request->no_incluye;
         $publicacion->titulo = $request->titulo;
+        $publicacion->tel_contacto = $request->tel_contacto;
+        $publicacion->tel_wsp = $request->tel_wsp;
         $publicacion->usuario = Auth::user()->id;
         $publicacion->save();
+        $pubID = Publicacion::select('postID')->where('usuario', Auth::user()->id)->orderBy('postID', 'desc')->first()->postID;
         $publicacion->tag($tags);
+
+         
+          foreach ($request->precio as $i => $precio) {
+            $detalle = new DetallePublicacion();
+            $detalle->descripcion = $request->criterio[$i];
+            $detalle->precio = $precio;
+            $detalle->publicacion_servicio = $pubID;
+            $detalle->save();
+          } 
+
+
+
         
         $imagen = new Imagen();
         $imagen->nombre = $name;
@@ -51,12 +68,14 @@ class PublicacionController extends Controller
         $imagen->save();
         
 //        Flash::sucess('Se ha creado la publicación' . $publicacion->titulo . ' de forma satisfactoria');
-        
-        return redirect('/inicio')->with('info', 'Post creado con éxito');
+
+        return redirect()->route('detalle-servicio', ['postID' => $pubID, 'titulo' => $publicacion->titulo])->with('info', 'Post creado con éxito');
+       
     }
 
     public function show($postID, $titulo)
     {
+
         $categoria = Publicacion::select('categoriaServ')->where('postID', $postID)->pluck('categoriaServ')->first();
         $up = Publicacion::select('usuario')->where('postID', $postID)->pluck('usuario')->first();
         $publicacion = Publicacion::where('postID', $postID)->first();
@@ -64,7 +83,24 @@ class PublicacionController extends Controller
         $user = User::where('id', $up)->first();
         $imagen = Imagen::where('publicacion_id', $postID)->get();
 
-        return view('publicaciones.ver', compact(['publicacion', 'imagen', 'user', 'categorias']));
+        $detalle = DetallePublicacion::where('publicacion_servicio', $postID)->get();
+
+        return view('publicaciones.ver', compact(['publicacion', 'imagen', 'user', 'categorias', 'detalle']));
+    }
+
+        public function showContact($postID, $titulo)
+    {
+
+        $categoria = Publicacion::select('categoriaServ')->where('postID', $postID)->pluck('categoriaServ')->first();
+        $up = Publicacion::select('usuario')->where('postID', $postID)->pluck('usuario')->first();
+        $publicacion = Publicacion::where('postID', $postID)->first();
+        $categorias = Categoria::where('categoriaID', $categoria)->first();
+        $user = User::where('id', $up)->first();
+        $imagen = Imagen::where('publicacion_id', $postID)->get();
+
+        $detalle = DetallePublicacion::where('publicacion_servicio', $postID)->get();
+
+        return view('publicaciones.contacto', compact(['publicacion', 'imagen', 'user', 'categorias', 'detalle']));
     }
     
     public function prueba(){

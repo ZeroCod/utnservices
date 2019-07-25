@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="69px" height="69px" viewBox="0 0 69 69" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 10</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Creador-ARTICULO-FULL-SCREEN-" transform="translate(-1015.000000, -319.000000)">
+            <g id="Group-10" transform="translate(1015.000000, 319.000000)">
+                <rect id="Rectangle-3-Copy-21" fill="#EFEFEF" x="0" y="0" width="69" height="69" rx="34.5"></rect>
+                <rect id="Rectangle-2-Copy-9" stroke="#E1E1E1" fill="#FFFFFF" x="4.5" y="27.5" width="27" height="13" rx="4"></rect>
+                <rect id="Rectangle-2-Copy-10" stroke="#E1E1E1" fill="#FFFFFF" x="34.5" y="27.5" width="30" height="13" rx="4"></rect>
+                <text id="Hint-text-Copy-12" font-family="Lato-Regular, Lato" font-size="8" font-weight="normal" line-spacing="24" fill="#16C465">
+                    <tspan x="9" y="37">Tag 1</tspan>
+                </text>
+                <text id="Hint-text-Copy-24" font-family="Lato-Regular, Lato" font-size="8" font-weight="normal" line-spacing="24" fill="#16C465">
+                    <tspan x="41" y="37">Tag 2</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
